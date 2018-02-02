@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+   <!-- 1 配置注解的自动扫描-->
+   <context:component-scan base-package="com.atguigu.p2p">
+		<!-- 排除 -->
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+   </context:component-scan>
+
+	<context:annotation-config/>
+
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
+	
+	<tx:annotation-driven transaction-manager="transactionManager"	proxy-target-class="true" />
+	<bean id="groupMap" class="java.util.TreeMap">
+		<constructor-arg>
+			<map>
+				<entry key="1" value="新闻" />
+				<entry key="2" value="论坛" />
+				<entry key="3" value="博客" />
+				<entry key="4" value="微博" />
+				<entry key="5" value="纸媒" />
+				<entry key="7" value="外媒" />
+				<entry key="11" value="微信" />
+				<entry key="12" value="图片" />
+				<entry key="13" value="新闻客户端" />
+				<entry key="14" value="问答" />
+				<entry key="15" value="视频弹幕" />
+				<entry key="16" value="网络直播" />
+				<entry key="17" value="网络电视台" />
+				<entry key="18" value="笔记类分享" />
+				<entry key="19" value="twitter" />
+				<entry key="20" value="facebook" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="transactionManager"	class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/ssm0315?useUnicode=true&amp;characterEncoding=utf8"/>
+		<property name="username" value="root" />
+		<property name="password" value="123456" />
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:MybatisConf.xml"/>
+		<property name="mapperLocations" value="classpath:com/atguigu/p2p/**/*Mapper.xml" />
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.atguigu.p2p"/>
+		<property name="annotationClass" value="org.springframework.stereotype.Repository"/>
+	</bean>
+	<bean id="staticValue" class="com.atguigu.p2p.util.StaticValue"  lazy-init="false">
+		<property name="groupMap">
+			<ref bean="groupMap" />
+		</property>
+	</bean>
+	
+ </beans>

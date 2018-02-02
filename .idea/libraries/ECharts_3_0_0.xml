@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="ECharts-3.0.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/ECharts-3.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
