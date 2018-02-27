@@ -1,4 +1,7 @@
 package exercise;
+
+import org.junit.Test;
+
 //输入两个正整数m和n，求其最大公约数和最小公倍数。
 public class Test2 {
 	public static void main(String[] args) {
@@ -20,5 +23,11 @@ public class Test2 {
 				break;
 			}
 		}
+	}
+	@Test
+	public void test(){
+		int m = 12;
+		int n = 28;
+
 	}
 }

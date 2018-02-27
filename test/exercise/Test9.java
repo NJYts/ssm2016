@@ -1,7 +1,8 @@
 package exercise;
 
-import java.io.UnsupportedEncodingException;
 import org.junit.Test;
+
+import java.io.UnsupportedEncodingException;
 
 
 /*
@@ -45,4 +46,23 @@ public class Test9 {
 			System.out.println((int)c);
 		}
 	}
+	@Test
+	public void test2() throws UnsupportedEncodingException {
+		String str = "我a爱北京abc我爱尚硅谷def";
+		byte[] b = str.getBytes("GBK");
+		byte[] b1 = new byte[6];
+		if (b.length > 6){
+			if (b[5] < 0){
+				for (int i = 0;i<4;i++){
+					b1[i] = b[i];
+				}
+			}else{
+				for (int i = 0;i<6;i++){
+					b1[i] = b[i];
+				}
+			}
+		}
+		System.out.println(new String(b1,"GBK"));
+	}
+
 }

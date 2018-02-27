@@ -6,6 +6,7 @@ package exercise;
  例如：输入的数组为1, -2, 3, -10, -4, 7, 2, -5，和最大的子数组为3, 10, -4, 7, 2，
  因此输出为该子数组的和18。
 
+不懂这个写法
  */
 public class Test5 {
 	public static void main(String[] args) {
