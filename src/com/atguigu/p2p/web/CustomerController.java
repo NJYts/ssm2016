@@ -1,22 +1,18 @@
 package com.atguigu.p2p.web;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import com.atguigu.p2p.service.ICustomerService;
 import com.atguigu.p2p.util.DateFormatHelper;
 import com.atguigu.p2p.util.JsonHelper;
 import com.atguigu.p2p.util.Page;
 import com.atguigu.p2p.vo.CustomerModel;
 import com.atguigu.p2p.vo.CustomerQueryModel;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
@@ -71,7 +67,7 @@ public class CustomerController
 		customerService.update(cm);
 		return "success";
 	}
-	
+	@ModelAttribute
 	//==========查method ={RequestMethod.POST,RequestMethod.GET})
 	@RequestMapping(value="toList",method =RequestMethod.GET)
 	public String toList(@ModelAttribute("wm") CustomerWebModel wm,Model model,HttpServletRequest request)	
