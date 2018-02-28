@@ -152,7 +152,7 @@ public class ReadFiles {
 				BufferedReader br1 = new BufferedReader(reader1);
 				FileReader reader2 = new FileReader("C:\\Users\\WISE\\Documents\\Tencent Files\\2829573051\\FileRecv\\停用词.txt");
 				BufferedReader br2 = new BufferedReader(reader2);*/
-				InputStreamReader reader = new InputStreamReader(new FileInputStream("C:\\Users\\WISE\\Desktop\\新建文本文档.txt"),"utf-8");
+				InputStreamReader reader = new InputStreamReader(new FileInputStream("C:\\Users\\WISE\\Desktop\\新建文本文档4.txt"),"utf-8");
 				BufferedReader br = new BufferedReader(reader);
 				String s = null;
 				String result = "";
@@ -199,7 +199,7 @@ public class ReadFiles {
 					for (int j = 0; j < fuzhu.size(); j++) {
 						result = result + fuzhu.get(j);
 
-						sqlsearchNew = sqlsearch + "('数据采集" + j + "','2017-11-30 00:00:00','20','1','2','0','','" + result.replace("/", " ") + "','','','','0','0','0','0')";
+						sqlsearchNew = sqlsearch + "('数据采集" + j + "','2018-2-28 11:00:00','20','0','2','0','','" + result.replace("/", " ") + "','','','','0','0','0','0')";
 						statement.executeUpdate(sqlsearchNew);
 						String getId = "select id from `system_searchconf` as s where s.name='数据采集"+j+"'";
 						resultSet = statement.executeQuery(getId);
@@ -330,7 +330,7 @@ public class ReadFiles {
 
 	public static void main(String[] args) {
 
-		pushImgLogo();
+		//pushWaijiaobu();
 	}
 
 

@@ -5,7 +5,7 @@ import org.junit.Test;
 public class Test10_2 {
 	@Test
 	public void test1(){
-		String str = "aaadddeeffbbbb";
+		String str = "aaadddeeffbbbbc";
 		String newStr = "";
 		int num = 1;
 		for(int i = 0;i < str.length() - 1;i++){
@@ -19,6 +19,7 @@ public class Test10_2 {
 				num = 1;
 			}
 		}
+		System.out.println(newStr);
 		int n = 1;
 		for(int i = str.length() - 1;i>= 0;i--){
 			if(str.charAt(i) == str.charAt(i - 1)){
