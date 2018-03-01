@@ -3,7 +3,7 @@ package exercise;
 /**
  * Created by WISE on 2018/2/2.
  */
-public class exercise {
+public class Exercise {
 	public static void main(String[] args) {
 		int[] arr = new int[]{1, -2, 3, 10, -4, 7, 2, -5};
 		arr = selectSort(arr);
@@ -29,4 +29,5 @@ public class exercise {
 		return arr;
 
 	}
+
 }

@@ -41,5 +41,6 @@
     <orderEntry type="library" name="c3p0-0.9.1.2" level="project" />
     <orderEntry type="library" name="junit" level="project" />
     <orderEntry type="library" name="org.hamcrest.core_1.1.0.v20090501071000" level="project" />
+    <orderEntry type="library" name="jxl" level="project" />
   </component>
 </module>

@@ -23,7 +23,7 @@ public class Test16 {
 
 class Person{
 	String name;
-	
+
 	public Person(String name){
 		this.name = name;
 	}
@@ -45,5 +45,5 @@ class Person{
 			return false;
 		return true;
 	}
-	
+
 }
