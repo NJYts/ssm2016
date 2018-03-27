@@ -11,7 +11,7 @@ import org.junit.Test;
    *
    * Created by WISE on 2018/3/27.
  */
-public class BugProgrammes {
+public class BuyProgrammes {
 	@Test
 	public void bug(){
 		//3x+2y+0.5z = 100
