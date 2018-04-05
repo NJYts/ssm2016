@@ -51,7 +51,7 @@ public class StackOverAndOutOfMemory {
 	@Test
 	public void stackLeakByThread(){
 		int count = 0;
-		while(true){
+		while(count < 2){
 			count++;
 			System.out.println(count);
 			Thread thread = new Thread(new Runnable(){
@@ -61,8 +61,11 @@ public class StackOverAndOutOfMemory {
 				}
 			});
 			thread.start();
-			if (count > 5){
-				while(true){}
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+
 			}
 		}
 	}
