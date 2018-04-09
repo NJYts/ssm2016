@@ -9,11 +9,11 @@ public class SampleFactory {
      * @param type
      * @return
      */
-    public static Human makeHuman(String type){
+    public static Car makeHuman(String type){
         if ("man".equals(type)){
-            return new Man();
+            return new Benz();
         }else if ("womman".equals(type)){
-            return new Womman();
+            return new Bmw();
         }else{
             return null;
         }
@@ -24,10 +24,10 @@ public class SampleFactory {
      * @param T
      * @return
      */
-    public static Human makeHuman1(Class T){
-        Human human = null;
+    public static Car makeCar(Class T){
+        Car car = null;
         try {
-            human = (Human) Class.forName(T.getName()).newInstance();
+            car = (Car) Class.forName(T.getName()).newInstance();
         } catch (InstantiationException e) {
             // TODO Auto-generated catch block
             System.out.println("不支持抽象类或接口");
@@ -41,6 +41,6 @@ public class SampleFactory {
             System.out.println("类不存在");
             e.printStackTrace();
         }
-        return human;
+        return car;
     }
 }
