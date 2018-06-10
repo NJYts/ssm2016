@@ -12,7 +12,6 @@ public class SingletonTest {
 
     private SingletonTest() {
     }
-
     public static SingletonTest getInstance() {
         if (instance != null){
             synInit();
@@ -24,4 +23,5 @@ public class SingletonTest {
             instance = new SingletonTest();
         }
     }
+
 }

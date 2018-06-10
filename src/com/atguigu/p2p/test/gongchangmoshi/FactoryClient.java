@@ -6,15 +6,9 @@ package com.atguigu.p2p.test.gongchangmoshi;
 public class FactoryClient {
     public static void main(String[] args) {
 
-        Human man = SampleFactory.makeHuman("man");
-        man.say();
-        Human womman = SampleFactory.makeHuman("womman");
-        womman.say();
-        Human test = SampleFactory.makeHuman("tttt");
-
-        Human man1 = SampleFactory.makeHuman1(Man.class);
-        man1.say();
-        Human woman = SampleFactory.makeHuman1(Womman.class);
-        woman.say();
+        Car Benz = SampleFactory.makeCar(Benz.class);
+        Benz.say();
+        Car Bmw = SampleFactory.makeCar(Bmw.class);
+        Bmw.say();
     }
 }
