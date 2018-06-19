@@ -33,6 +33,7 @@ import java.lang.reflect.Field;
 		获取指定对象中此字段的值
 
 		Object fieldObject= field.get(user);//user可以看做是从数据库中查找出来的对象
+		
    *    @param :  * @param null
    *    @version : v2.0
    *
