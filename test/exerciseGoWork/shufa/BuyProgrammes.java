@@ -1,4 +1,4 @@
-package exerciseGoWork;
+package exerciseGoWork.shufa;
 
 import org.junit.Test;
 

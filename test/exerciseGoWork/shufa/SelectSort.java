@@ -1,4 +1,4 @@
-package exercise;
+package exerciseGoWork.shufa;
 
 public class SelectSort {
 	public static void main(String[] args) {
