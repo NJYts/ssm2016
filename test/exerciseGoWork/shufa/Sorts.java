@@ -62,20 +62,21 @@ public class Sorts {
 		return -1;
 	}
 	/**
-	 * 选择排序：依次固定每个下标，让每个固定下标中的数和后面所有的数据进行比较
+	 * 选择排序：依次固定每个下标，让每个固定下标中的数和后面所有的数据进行比较 找出最大或者最小的值
 	 *
-	 * @param m
-	 *            需要排序的数据，按大到小排序
+	 * @param m 需要排序的数据，按大到小排序
 	 */
 	public static void XuanzePaixu(int[] m) {
-		int n;
-		for (int i = 0; i < m.length - 1; i++) {
-			for (int j = i + 1; j < m.length; j++) {
-				if (m[j] > m[i]) {
-					n = m[j];
-					m[j] = m[i];
-					m[i] = n;
-				}
+		for (int i = 0; i < m.length ; i++) {//外层控制轮数
+			int result = i;//最大值对应的索引
+			//内层找到最大值放在前面
+			for (int j = i+1; j <m.length ; j++) {
+				if (m[j]>m[result]) result=j;
+			}
+			if(result != i){
+				int temp = m[i];
+				m[i]=m[result];
+				m[result] = temp;
 			}
 		}
 	}
