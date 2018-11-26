@@ -6,7 +6,7 @@ package exerciseGoWork.shufa;
  */
 public class Sorts {
 	public static void main(String[] args) {
-		int[] m = new int[] { 2, 5, 1, 4, 6, 8, 7, 9, 8 , 22 , 3 , 10};
+		int[] m = new int[] { 2, 5, -1, 4, 6, 8, -7, 9, 8 , 22 , 3 , 10,-5};
 		MaoPaoPaixu(m);
 		for (int i:m){
 			System.out.print(i+" ");
@@ -64,19 +64,24 @@ public class Sorts {
 	/**
 	 * 选择排序：依次固定每个下标，让每个固定下标中的数和后面所有的数据进行比较
 	 *
-	 * @param m
+	 * @param arr
 	 *            需要排序的数据，按大到小排序
 	 */
-	public static void XuanzePaixu(int[] m) {
-		int n;
-		for (int i = 0; i < m.length - 1; i++) {
-			for (int j = i + 1; j < m.length; j++) {
-				if (m[j] > m[i]) {
-					n = m[j];
-					m[j] = m[i];
-					m[i] = n;
+	public static int[] selectSort(int[] arr){
+		for(int i = 0;i < arr.length -1;i++){
+			int min = i;
+			for(int j = i+1;j < arr.length;j++){
+				if(arr[min] > arr[j]){
+					min = j;
 				}
 			}
+			if(min != i){
+				int temp = arr[i];
+				arr[i] = arr[min];
+				arr[min] = temp;
+			}
+
 		}
+		return arr;
 	}
 }
