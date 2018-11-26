@@ -5,6 +5,7 @@ import java.util.Arrays;
 /**
  *
  * https://www.cnblogs.com/chengxiao/p/6194356.html
+ * 解决hash冲突 https://www.cnblogs.com/zhangbing12304/p/7997980.html
  * @Auther: niujianye
  * @Date: 2018/11/26 14:31
  * @Description: 归并排序是稳定排序，它也是一种十分高效的排序，能利用完全二叉树特性的排序一般性能都不会太差。
