@@ -16,7 +16,7 @@ import java.util.Arrays;
 public class MergeSort {
     public static void main(String []args){
         int []arr = {9,2,6,5};
-        sort(arr);
+        sort1(arr);
         System.out.println(Arrays.toString(arr));
     }
     public static void sort(int []arr){
@@ -44,6 +44,7 @@ public class MergeSort {
                 temp[t++] = arr[j++];
             }
         }
+
         while(i<=mid){//将左边剩余元素填充进temp中
             temp[t++] = arr[i++];
         }
@@ -55,5 +56,44 @@ public class MergeSort {
         while(left <= right){
             arr[left++] = temp[t++];
         }
+    }
+    public static void sort1(int []arr){
+        int []temp = new int[arr.length];
+        sort1(arr,0,arr.length-1,temp);
+
+    }
+    private static void sort1(int[] arr,int left,int right,int []temp){
+        if (left<right) {
+            int mid = (left+right)/2;
+            sort1(arr,left,mid,temp);
+            sort1(arr,mid+1,right,temp);
+            merge1(arr,left,mid,right,temp);
+        }
+    }
+    private static void merge1(int[] arr,int left,int mid,int right,int[] temp){
+        int i = left;
+        int j = mid+1;
+        System.out.println("左序列指针:"+i+" 右序列指针:"+j);
+        int t = 0;//临时数组指针
+        while (i<=mid && j<=right){
+            if(arr[i]<=arr[j]){
+                temp[t++] = arr[i++];
+            }else {
+                temp[t++] = arr[j++];
+            }
+        }
+        //zuocefangru
+        while (i<=mid) {
+            temp[t++] = arr[i++];
+        }
+        //zuocefangru
+        while (j<=right) {
+            temp[t++] = arr[j++];
+        }
+        t=0;
+        while (left<=right) {
+            arr[left++] = temp[t++];
+        }
+
     }
 }

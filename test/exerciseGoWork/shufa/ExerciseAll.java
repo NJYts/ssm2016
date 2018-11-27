@@ -1,5 +1,7 @@
 package exerciseGoWork.shufa;
 
+import com.github.abel533.echarts.feature.Mark;
+
 /**
  * Created by njy on 2018/10/31.
  */
@@ -40,37 +42,69 @@ public class ExerciseAll {
             }
         }
     }
-    /**
-     * 冒泡排序：下标相邻的两个数进行排序
-     * @param m 需要排序的数据，按由小到大排序
-     */
-    public static void MaoPaoPaixu(int[] m) {
 
-    }
     /**
      * 二分法查找，前提：被查找的数组是有序排列的，没有该数，默认返回-1
-     *
      * @param m 被查找的数组数据
      * @param key 需要查找的数据
      *
      */
     public static int SecondChaZhao(int[] m, int key) {
-
+        int min = 0;
+        int max = m.length;
+        int mid = 0;
+        while (min <= max) {
+            mid=(min+max)/2;
+            if (m[min] < key) {
+                min = mid-1;
+            } else if (m[min] > key) {
+                max = mid + 1;
+            } else {
+                return mid;
+            }
+        }
         return -1;
     }
+
     /**
      * 选择排序：依次固定每个下标，让每个固定下标中的数和后面所有的数据进行比较 找出最大或者最小的值
-     *
      * @param m 需要排序的数据，按大到小排序
      */
     public static void XuanzePaixu(int[] m) {
-
+        int temp=0;
+        for (int i = 0; i <m.length; i++) {
+            int mark = i;
+            for (int j = i; j < m.length; j++) {
+                if (m[j] > m[mark]) mark=j;
+            }
+            if (mark > 0){
+                temp = m[i];
+                m[i] = m[mark];
+                m[mark]=temp;
+            }
+        }
     }
 
     /**
-     * 快速排序
-     *
-     *  冒泡排序的一种改进。
+     * 冒泡排序：下标相邻的两个数进行排序
+     * @param m 需要排序的数据，按由小到大排序
+     */
+    public static void MaoPaoPaixu(int[] m) {
+        int temp=0;
+        for (int i = 0; i <m.length-1; i++) {
+            for (int j = 0; j < m.length-1-i; j++) {
+                if (m[j] > m[j+1]) {
+                    temp = m[j];
+                    m[j] = m[j+1];
+                    m[j+1]=temp;
+                }
+            }
+        }
+    }
+
+
+    /**
+     * 快速排序 冒泡排序的一种改进。
          它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，
          其中一部分的所有数据都比另外一部分的所有数据都要小，
          然后再按此方法对这两部分数据分别进行快速排序，
@@ -79,26 +113,26 @@ public class ExerciseAll {
      * @param right
      */
     static void quicksort(int left,int right){
-        int i =left,j=right,temp,temp2;
-        if (left>=right) return;
-        temp = a[left];//基准点
-        while (i != j){
-            //从右开始寻找小于基准点得值
-            while (a[j] >= temp && i<j) j--;
-            //从左侧开始寻找大于基准点的值
-            while (a[i] <= temp && i<j) i++;
+        int i,j,mark,temp;
+        if(left>right) return;
+        i=left;j=right;
+        mark=a[left];
+        while (i!=j) {
+            while(i<j&&a[j]<=mark) j--;
+            while(i<j&&a[i]>=mark) i++;
             if (i<j){
-                temp2 = a[j];
-                a[j]=a[i];
-                a[i]=temp2;
+                temp=a[i];
+                a[i]=a[j];
+                a[j]=temp;
             }
         }
-        //置换基准点
+
         a[left]=a[i];
-        a[i] = temp;
-        //递归另两部分
+        a[i]=mark;
         quicksort(left,i-1);
         quicksort(i+1,right);
 
     }
+
+
 }
