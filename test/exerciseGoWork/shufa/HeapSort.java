@@ -19,8 +19,41 @@ public class HeapSort {
         public static void main(String[] args) {
             int[] array = new int[] {4,6,8,5,9};
             // 接下来就是排序的主体逻辑
-            sort(array);
+            sort1(array);
             System.out.println(Arrays.toString(array));
+        }
+
+        public static void sort1(int[] array) {
+            //创建大椎 从下往上处理每一组节点 保证指针处父节点最大
+            for (int i = array.length / 2 - 1; i >= 0; i--) {
+                adjustHeap(array, i, array.length);
+            }
+
+            //把追定元素与末尾元素互换  再对其他元素重组成新锥
+            for (int i = array.length-1; i > 0 ; i--) {
+                swap(array, 0, i);
+                adjustHeap(array, 0, i);
+            }
+
+        }
+        public static void adjustHeap1(int[] array, int i, int length) {
+           //保留初始索引值
+            int temp = array[i];
+            //在制定范围内 遍历每一组节点处理
+            for (int k = 2*i-1; k <length ; k=2*k+1) {
+                // 让k先指向子节点中最大的节点
+                if(k+1 <length&&array[k]<array[k+1]){
+                    k++;
+                }
+                // 如果发现子节点更大，则进行值的交换
+                if (array[k]>temp){
+                    swap(array, i, k);
+                    //i指向k 继续下一次循环，处理下一组节点
+                    i = k;
+                }else {
+                    break;
+                }
+            }
         }
 
         /**

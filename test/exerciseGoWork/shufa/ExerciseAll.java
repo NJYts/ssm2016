@@ -50,19 +50,7 @@ public class ExerciseAll {
      *
      */
     public static int SecondChaZhao(int[] m, int key) {
-        int min = 0;
-        int max = m.length;
-        int mid = 0;
-        while (min <= max) {
-            mid=(min+max)/2;
-            if (m[min] < key) {
-                min = mid-1;
-            } else if (m[min] > key) {
-                max = mid + 1;
-            } else {
-                return mid;
-            }
-        }
+
         return -1;
     }
 
@@ -74,10 +62,10 @@ public class ExerciseAll {
         int temp=0;
         for (int i = 0; i <m.length; i++) {
             int mark = i;
-            for (int j = i; j < m.length; j++) {
+            for (int j = mark; j < m.length; j++) {
                 if (m[j] > m[mark]) mark=j;
             }
-            if (mark > 0){
+            if (mark > i) {
                 temp = m[i];
                 m[i] = m[mark];
                 m[mark]=temp;
@@ -109,29 +97,30 @@ public class ExerciseAll {
          其中一部分的所有数据都比另外一部分的所有数据都要小，
          然后再按此方法对这两部分数据分别进行快速排序，
          整个排序过程可以递归进行，以此达到整个数据变成有序序列。
+         从大到小
      * @param left
      * @param right
      */
     static void quicksort(int left,int right){
         int i,j,mark,temp;
-        if(left>right) return;
-        i=left;j=right;
+        if (left>right) return;
         mark=a[left];
+        i=left;j=right;
+        //开始排序
         while (i!=j) {
-            while(i<j&&a[j]<=mark) j--;
-            while(i<j&&a[i]>=mark) i++;
-            if (i<j){
-                temp=a[i];
-                a[i]=a[j];
-                a[j]=temp;
+            while (a[j] <= mark && i<j) j--;
+            while (a[i] >= mark && i<j) i++;
+            if (i<j) {
+                temp=a[j];
+                a[j]=a[i];
+                a[i]=temp;
             }
         }
-
+        //最后基准数归位 置换基准数
         a[left]=a[i];
         a[i]=mark;
         quicksort(left,i-1);
         quicksort(i+1,right);
-
     }
 
 

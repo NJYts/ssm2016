@@ -28,21 +28,16 @@ public class ShellSort {
      * @param arr
      */
     public static void sort2(int[] arr) {
-        //增量gap，并逐步缩小增量
-        for (int gap = arr.length / 2;  gap > 0; gap/=2) {
-            //从第gap个元素，逐个对其所在组进行直接插入排序操作
+        //控制增量 逐步缩小
+        for (int gap = arr.length/2; gap > 0; gap/=2) {
             for (int i = gap; i < arr.length; i++) {
-                int j = i;
-                while (j - gap >= 0 && arr[j] < arr[j - gap]) {
-                    int temp = arr[j];
-                    arr[j] = arr[j - gap];
-                    arr[j - gap] = temp;
-                    j -= gap;
+                int j=i;
+                while (j-gap>=0&&arr[j] < arr[j - gap]){
+                    swap(arr, j, j - gap);
+                    j-=gap;
                 }
             }
         }
-
-                    //插入排序采用交换法
     }
 
     /**
@@ -51,15 +46,15 @@ public class ShellSort {
      * @param arr
      */
     public static void sort3(int[] arr) {
-        //控制增量gap，并逐步缩小增量
-        for (int gap = arr.length/2; gap > 0; gap/=2) {
-            for (int i = gap; i < arr.length; i++) {
-                int temp=arr[i];
-                while (i - gap >= 0 && temp < arr[i - gap]) {
-                    arr[i] = arr[i - gap];
-                    i-=gap;
+        for (int gap = arr.length/2; gap > 0 ; gap/=2) {
+            for (int i = gap; i <arr.length ; i++) {
+                int j = i;
+                int temp = arr[j];
+                while (j-gap>=0 && temp >arr[j-gap]) {
+                    arr[j]=arr[j-gap];
+                    j = j-gap;
                 }
-                arr[i] = temp;
+                arr[j]=temp;
             }
         }
     }
