@@ -5,7 +5,10 @@ import java.util.Arrays;
 /**
  * @Auther: niujianye
  * @Date: 2018/11/27 10:04
- * @Description: 哈希表查找（除留余数法（余数大于等于0小于除数））
+ * @Description:
+ * 解决hash冲突 https://www.cnblogs.com/zhangbing12304/p/7997980.html
+ *
+ * 哈希表查找（除留余数法（余数大于等于0小于除数））
  * 哈希表也称散列表，查找有两种方式，比较式查找和计算式查找，而计算式查找则通过哈希表来实现。
  * 给定表M，存在函数f(key)，对任意给定的关键字值key，代入函数后若能得到包含该关键字的记录在表中的地址，则称表M为哈希(Hash）表，函数f(key)为哈希(Hash) 函数；
  * 更通俗来说，哈希表通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。
@@ -52,16 +55,15 @@ public class HashTable {
 
         static int hashSearch1(int ht[],int len,int k){
             int j=h(k);
-            if (ht[j]==k) {
+            if (ht[j] == k) {
                 return j;
-            }else if (ht[j] ==-1){
+            } else if (ht[j]==-1){
                 ht[j]=k;
                 return j;
             }
-            //线性探测再散列
-            int i =h(j+1);
-            while (i!=j&&ht[i] !=-1) {
-                if (ht[i]==k) {
+            int i=(j+1)%N;
+            while (ht[i]!=-1&&i!=j) {//循环遍历散列表
+                if(ht[i]==k){
                     return i;
                 }else {
                     i=(++i)%N;
@@ -69,11 +71,13 @@ public class HashTable {
             }
             if (i==j) {//遍历散列表一遍，没找到，满
                 System.err.println("哈希表溢出！");
-            }else if (ht[i] ==-1){
+            }else {
                 ht[i]=k;
                 return i;
             }
             return 0;
+
+
         }
 
 

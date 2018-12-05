@@ -4,6 +4,8 @@ import com.github.abel533.echarts.feature.Mark;
 
 /**
  * Created by njy on 2018/10/31.
+ * 交换排序（冒泡排序、快速排序）、选择排序（直接选择排序、堆排序）、插入排序（直接插入排序、希尔排序）
+ * 归并排序、顺序查找、二分查找、哈希查找
  */
 public class ExerciseAll {
     private static int a[] = new int[] { 2, 5, 1, 4, 6, 8, 7, 9, 8 , 22 , 3 , 10},na;//定义全局变量，这两个变量需要在子函数中使用
@@ -30,10 +32,7 @@ public class ExerciseAll {
 
         System.out.println();
         System.out.println("\n快速排序 - result...");
-        /*int i,j,t;
-        for(i=0;i<101;i++){
-            a[i] = (int) (Math.random()*100);
-        }*/
+
         quicksort(0,a.length-1); //快速排序调用
         //输出排序后的结果
         for(int i=1;i<a.length;i++){
@@ -43,35 +42,7 @@ public class ExerciseAll {
         }
     }
 
-    /**
-     * 二分法查找，前提：被查找的数组是有序排列的，没有该数，默认返回-1
-     * @param m 被查找的数组数据
-     * @param key 需要查找的数据
-     *
-     */
-    public static int SecondChaZhao(int[] m, int key) {
 
-        return -1;
-    }
-
-    /**
-     * 选择排序：依次固定每个下标，让每个固定下标中的数和后面所有的数据进行比较 找出最大或者最小的值
-     * @param m 需要排序的数据，按大到小排序
-     */
-    public static void XuanzePaixu(int[] m) {
-        int temp=0;
-        for (int i = 0; i <m.length; i++) {
-            int mark = i;
-            for (int j = mark; j < m.length; j++) {
-                if (m[j] > m[mark]) mark=j;
-            }
-            if (mark > i) {
-                temp = m[i];
-                m[i] = m[mark];
-                m[mark]=temp;
-            }
-        }
-    }
 
     /**
      * 冒泡排序：下标相邻的两个数进行排序
@@ -90,7 +61,6 @@ public class ExerciseAll {
         }
     }
 
-
     /**
      * 快速排序 冒泡排序的一种改进。
          它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，
@@ -102,26 +72,67 @@ public class ExerciseAll {
      * @param right
      */
     static void quicksort(int left,int right){
-        int i,j,mark,temp;
-        if (left>right) return;
-        mark=a[left];
-        i=left;j=right;
-        //开始排序
-        while (i!=j) {
-            while (a[j] <= mark && i<j) j--;
-            while (a[i] >= mark && i<j) i++;
-            if (i<j) {
-                temp=a[j];
-                a[j]=a[i];
-                a[i]=temp;
+       int i,j,mark,temp;
+        if (left > right) {
+            return;
+        }
+        i=left;j=right;mark=a[left];
+        while (i != j) {
+            while (a[j]<=mark && i<j ) j--;
+            while (a[i]>=mark && i<j ) i++;
+            if (i<j){
+                temp=a[i];
+                a[i]=a[j];
+                a[j]=temp;
             }
         }
-        //最后基准数归位 置换基准数
-        a[left]=a[i];
+
+        a[left] = a[i];
         a[i]=mark;
-        quicksort(left,i-1);
-        quicksort(i+1,right);
+        quicksort(left,i-1);//继续处理左边的，这里是一个递归的过程
+        quicksort(i+1,right);//继续处理右边的，这里是一个递归的过程
     }
 
+
+
+    /**
+     * 选择排序：依次固定每个下标，让每个固定下标中的数和后面所有的数据进行比较 找出最大或者最小的值
+     * @param m 需要排序的数据，按大到小排序
+     */
+    public static void XuanzePaixu(int[] m) {
+        int temp=0;
+        for (int i = 0; i <m.length ; i++) {
+            int mark = i;
+            for (int j = i; j <m.length ; j++) {
+                if (m[j]>m[mark]) mark=j;
+            }
+            if (mark > i){
+                temp=m[mark];
+                m[mark]=m[i];
+                m[i]=temp;
+            }
+        }
+    }
+
+    /**
+     * 二分法查找，前提：被查找的数组是有序排列的，没有该数，默认返回-1
+     * @param m 被查找的数组数据
+     * @param key 需要查找的数据
+     *
+     */
+    public static int SecondChaZhao(int[] m, int key) {
+        int min=0;int max=m.length;int mid=0;
+        while (min <= max) {
+            mid = (min + max)/2;
+            if (m[mid] < key){
+                min = mid+1;
+            }else if (m[mid] > key){
+                max = mid-1;
+            }else {
+                return mid;
+            }
+        }
+        return -1;
+    }
 
 }

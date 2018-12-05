@@ -6,6 +6,7 @@ import java.util.Arrays;
  * @Auther: niujianye
  * @Date: 2018/11/27 16:59
  * @Description:
+ * http://www.cnblogs.com/chengxiao/p/6129630.html
  * 总结堆排序的基本思路：
 
 　　a.将无需序列构建成一个堆，根据升序降序需求选择大顶堆或小顶堆;
@@ -18,12 +19,26 @@ import java.util.Arrays;
 public class HeapSort {
         public static void main(String[] args) {
             int[] array = new int[] {4,6,8,5,9};
-            // 接下来就是排序的主体逻辑
-            sort1(array);
+            // 接下来就是排序的主体逻辑 从大到小
+            sort(array);
             System.out.println(Arrays.toString(array));
         }
-
         public static void sort1(int[] array) {
+              //创建一个大顶锥 从小往上处理每一组节点，保证每一组顶点最大
+            for (int i = array.length/2-1; i > 0; i--) {
+
+            }
+
+        }
+        public static void adjustHeap1(int[] array, int i, int length) {
+            //将初始值另存起来
+            int temp = array[i];
+            //开始处理范围内的每一组节点
+
+            //将指针执向更大的叶子节点
+
+        }
+        /*public static void sort1(int[] array) {
             //创建大椎 从下往上处理每一组节点 保证指针处父节点最大
             for (int i = array.length / 2 - 1; i >= 0; i--) {
                 adjustHeap(array, i, array.length);
@@ -54,7 +69,7 @@ public class HeapSort {
                     break;
                 }
             }
-        }
+        }*/
 
         /**
          *
@@ -115,7 +130,7 @@ public class HeapSort {
 
                 // 如果发现子节点更大，则进行值的交换
                 if (array[k] > temp) {
-                    swap(array, i, k);
+                    array[i] = array[k];
                     // 下面就是非常关键的一步了
                     // 如果子节点更换了，那么，以子节点为根的子树会不会受到影响呢？
                     // 所以，循环对子节点所在的树继续进行判断
@@ -125,6 +140,7 @@ public class HeapSort {
                     break;
                 }
             }
+            array[i] = temp;//将temp值放到最终的位置
         }
 
         /**
