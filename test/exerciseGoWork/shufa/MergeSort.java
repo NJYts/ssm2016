@@ -85,7 +85,7 @@ public class MergeSort {
         System.out.println("i左侧序列指针："+i+" j右侧序列指针："+j);
         int t = 0;
         while (i<=mid&&j<=right) {
-            if (arr[i]>arr[j]) {
+            if (arr[i]>=arr[j]) {
                 temp[t++] = arr[i++];
             }else {
                 temp[t++] = arr[j++];

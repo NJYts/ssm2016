@@ -13,20 +13,26 @@ import java.util.Arrays;
 
 　　b.将堆顶元素与末尾元素交换，将最大元素"沉"到数组末端;
 
-　　c.重新调整结构，使其满足堆定义，然后继续交换堆顶元素与当前末尾元素，反复执行调整+交换步骤，直到整个序列有序。
+　　c.重新调整结构，使其满足堆定义，然后继续交换堆顶元素与当前末尾元素，反复执行选择调整+交换步骤，直到整个序列有序。
 
  */
 public class HeapSort {
         public static void main(String[] args) {
             int[] array = new int[] {4,6,8,5,9};
             // 接下来就是排序的主体逻辑 从大到小
-            sort(array);
+            sort1(array);
             System.out.println(Arrays.toString(array));
         }
         public static void sort1(int[] array) {
-              //创建一个大顶锥 从小往上处理每一组节点，保证每一组顶点最大
-            for (int i = array.length/2-1; i > 0; i--) {
-
+            //创建一个大顶锥 从小往上处理每一组节点，保证每一组顶点最大
+            for (int i = array.length/2-1; i >= 0; i--) {
+                adjustHeap1(array, i, array.length);
+            }
+            System.out.println("建堆结束:"+Arrays.toString(array));
+            //把追定元素与末尾元素互换  再对其他元素重组成新锥
+            for (int i = array.length-1; i > 0 ; i--) {
+                swap(array, 0, i);
+                adjustHeap1(array, 0, i);
             }
 
         }
@@ -34,42 +40,23 @@ public class HeapSort {
             //将初始值另存起来
             int temp = array[i];
             //开始处理范围内的每一组节点
-
-            //将指针执向更大的叶子节点
-
-        }
-        /*public static void sort1(int[] array) {
-            //创建大椎 从下往上处理每一组节点 保证指针处父节点最大
-            for (int i = array.length / 2 - 1; i >= 0; i--) {
-                adjustHeap(array, i, array.length);
-            }
-
-            //把追定元素与末尾元素互换  再对其他元素重组成新锥
-            for (int i = array.length-1; i > 0 ; i--) {
-                swap(array, 0, i);
-                adjustHeap(array, 0, i);
-            }
-
-        }
-        public static void adjustHeap1(int[] array, int i, int length) {
-           //保留初始索引值
-            int temp = array[i];
-            //在制定范围内 遍历每一组节点处理
-            for (int k = 2*i-1; k <length ; k=2*k+1) {
-                // 让k先指向子节点中最大的节点
+            for (int k = 2*i+1; k <length ; k=2*k+1) {
+                //将指针执向更大的叶子节点
                 if(k+1 <length&&array[k]<array[k+1]){
                     k++;
                 }
                 // 如果发现子节点更大，则进行值的交换
                 if (array[k]>temp){
-                    swap(array, i, k);
+                    array[i]=array[k];
                     //i指向k 继续下一次循环，处理下一组节点
                     i = k;
                 }else {
                     break;
                 }
             }
-        }*/
+            array[i]=temp;
+
+        }
 
         /**
          *
