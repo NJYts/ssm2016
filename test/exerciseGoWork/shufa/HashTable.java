@@ -7,6 +7,7 @@ import java.util.Arrays;
  * @Date: 2018/11/27 10:04
  * @Description:
  * 解决hash冲突 https://www.cnblogs.com/zhangbing12304/p/7997980.html
+ * 1 开放定址法   2 再哈希法   3 链地址法   4 建立公共溢出区
  *
  * 哈希表查找（除留余数法（余数大于等于0小于除数））
  * 哈希表也称散列表，查找有两种方式，比较式查找和计算式查找，而计算式查找则通过哈希表来实现。
