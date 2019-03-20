@@ -23,41 +23,42 @@ public class HeapSort {
             sort1(array);
             System.out.println(Arrays.toString(array));
         }
-        public static void sort1(int[] array) {
-            //创建一个大顶锥 从下往上处理每一组节点，保证每一组顶点最大
-            for (int i = array.length/2-1; i >= 0; i--) {
-                adjustHeap1(array, i, array.length);
-            }
-            System.out.println("建堆结束:"+Arrays.toString(array));
-            //把追定元素与末尾元素互换  再对其他元素重组成新锥
-            for (int i = array.length-1; i > 0 ; i--) {
-                swap(array, 0, i);
-                adjustHeap1(array, 0, i);
+
+        public static void sort1(int[] array){
+            //按照完全二叉树的特点 从最后一个非叶子节点 开始
+            //按照从下到上 从左到右 的子树的顺序调整 完成大顶锥
+            for (int i = array.length/2-1; i >=0 ; i--) {
+                heapEngine(array,i,array.length);
             }
 
+            for (int i = array.length-1; i >0 ; i--) {
+                // 说是交换，其实质就是把大顶堆的根元素，放到数组的最后；换句话说，就是每一次的堆调整之后，都会有一个元素到达自己的最终位置
+                swap(array, 0, i);
+                // 元素交换之后，最后一个元素无需再考虑排序,排序的，就是已经去掉了部分元素的堆了
+                // 而这里，实质上是自上而下，自左向右进行调整的
+                heapEngine(array,0,i);
+            }
         }
-        public static void adjustHeap1(int[] array, int i, int length) {
-            //将初始值另存起来
-            int temp = array[i];
-            //开始处理范围内的每一组节点
-            for (int k = 2*i+1; k <length ; k=2*k+1) {
-                //将指针执向更大的叶子节点
-                if(k+1 <length && array[k]<array[k+1]){
-                    k++;
-                }
-                // 如果发现子节点更大，则进行值的交换
-                if (array[k]>temp){
-                    array[i]=array[k];
-                    //i指向k 继续下一次循环，处理下一组节点
-                    i = k;
-                }else {
+
+        public static void heapEngine(int[] arr,int begin,int end){
+            //开始的值会变化 提前保存其他变量
+            int temp=arr[begin];
+            for (int i = 2*begin+1; i < end; i = 2*i+1) {
+                //一次循环就是一个三角组合的判断处理
+                //首先判断相邻两个叶子节点
+                if (i + 1 < end && arr[i] < arr[i+1]) i++;
+                //较大的叶子与节点相比较
+                if (arr[i] > temp) {
+                    arr[begin] = arr[i];
+                    begin = i;
+                }else{
+                    //符合要求
                     break;
                 }
             }
-            array[i]=temp;
-
+            //将开始的值放到选择出的最大值处
+            arr[begin]=temp;
         }
-
         /**
          *
          * @description 本方法只有一个参数，那就是待排序的array

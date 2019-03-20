@@ -29,13 +29,9 @@ public class HashTable {
                 ht[i]=-1;	//初始化，可根据实际情况初始化
             }
             System.out.println();
-            System.out.print("散列地址:	");
-            for (int i = 0; i < ht.length; i++) {
-                System.out.print(i+"	");
-            }
 
             for (int i = 0; i < key.length; i++) {
-                hashSearch1(ht,N,key[i]);
+                hashSearch1(ht,key[i]);
             }
 
             System.out.println();
@@ -47,38 +43,41 @@ public class HashTable {
             System.out.println();
             System.out.print("hashtable 循环检索原数组，返回下标:	");
             for (int i = 0; i < key.length; i++) {
-                System.out.print(hashSearch1(ht,N,key[i])+"	");
+                System.out.print(hashSearch1(ht,key[i])+"	");
             }
             System.out.println();
-            System.out.print(hashSearch1(ht,N,60)+"	");
+            System.out.print(hashSearch1(ht,60)+"	");
             System.out.print("关键码:	"+Arrays.toString(ht));
         }
 
-        static int hashSearch1(int ht[],int len,int k){
+        static int hashSearch1(int ht[],int k){
             int j=h(k);
+            //该位置存在
             if (ht[j] == k) {
                 return j;
-            } else if (ht[j]==-1){
+            }
+            //该位置为空
+            if (ht[j]==-1){
                 ht[j]=k;
                 return j;
             }
+            //该位置被占用 再+1取余数 循环遍历散列表
             int i=(j+1)%N;
-            while (ht[i]!=-1&&i!=j) {//循环遍历散列表
+            while (ht[i]!=-1&&i!=j) {
+                //当再次之后位置不为空且与原位置不重复时
                 if(ht[i]==k){
                     return i;
-                }else {
-                    i=(++i)%N;
                 }
+                i=(++i)%N;
             }
-            if (i==j) {//遍历散列表一遍，没找到，满
+
+            if (i==j) {//遍历散列表一遍，没找到空的位置 ，满
                 System.err.println("哈希表溢出！");
-            }else {
+            }else {//找到空的位置
                 ht[i]=k;
                 return i;
             }
             return 0;
-
-
         }
 
 

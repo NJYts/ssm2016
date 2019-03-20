@@ -76,12 +76,32 @@ public class MergeSort {
             sort1(arr, left, mid, temp);
             sort1(arr, mid+1, right, temp);
             merge1(arr,left,mid,right,temp);//将两个有序子数组合并操作
-            System.out.println(Arrays.toString(arr));
         }
     }
 
     private static void merge1(int[] arr,int left,int mid,int right,int[] temp){
-        int i = left;int j=mid+1;
+        //确定指针移动的开始位置
+        int i = left;
+        int j = mid+1;
+        int t = 0;
+        //开始合并左右两部分到临时数组temp
+        while (i<=mid && j <=right){
+            if (arr[i] > arr[j]) {
+                temp[t++] = arr[i++];
+            }else{
+                temp[t++] = arr[j++];
+            }
+        }
+        while(i<=mid) temp[t++] = arr[i++];
+        while(j<=right) temp[t++] = arr[j++];
+
+        //把完成排序的临时数组 保存到原数组的指定位置
+        t=0;
+        while (left <= right){
+            arr[left++] = temp[t++];
+        }
+
+        /*int i = left;int j=mid+1;
         System.out.println("i左侧序列指针："+i+" j右侧序列指针："+j);
         int t = 0;
         while (i<=mid&&j<=right) {
@@ -101,7 +121,7 @@ public class MergeSort {
         //将temp中的元素全部拷贝到原数组中
         while(left <= right){
             arr[left++] = temp[t++];
-        }
+        }*/
     }
 
 }

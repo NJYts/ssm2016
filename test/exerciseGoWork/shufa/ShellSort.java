@@ -31,10 +31,10 @@ public class ShellSort {
      * @param arr
      */
     public static void insertionSort2(int[] arr) {
-        for (int i = 1; i <arr.length ; i++) {
+        for (int i = 1; i < arr.length; i++) {
             int temp = arr[i];
-            while (i>0 && temp >arr[i-1]) {
-                arr[i]=arr[i-1];
+            while (i-1 >0 && arr[i] > arr[i-1]){
+                arr[i-1] = arr[i];
                 i--;
             }
             arr[i]=temp;
