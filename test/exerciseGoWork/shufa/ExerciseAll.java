@@ -4,7 +4,7 @@ import com.github.abel533.echarts.feature.Mark;
 
 /**
  * Created by njy on 2018/10/31.
- * 交换排序（冒泡排序、快速排序）、选择排序（直接选择排序、堆排序）、插入排序（直接插入排序、希尔排序）
+ * 交换排序（冒泡排序、快速排序 O(N*log2 N) ）、选择排序（直接选择排序、堆排序）、插入排序（直接插入排序、希尔排序）
  * 归并排序、顺序查找、二分查找、哈希查找
  */
 public class ExerciseAll {
@@ -51,21 +51,22 @@ public class ExerciseAll {
      * @param m 需要排序的数据，按由小到大排序
      */
     public static void MaoPaoPaixu(int[] m) {
-        int temp=0;
-        for (int i = 0; i <m.length-1; i++) {
-            for (int j = 0; j < m.length-1-i; j++) {
+        int temp = 0;
+        for (int i = 0; i < m.length-1; i++) {
+            for (int j = 0; j < m.length-1-i ; j++) {
                 if (m[j] > m[j+1]) {
                     temp = m[j];
                     m[j] = m[j+1];
-                    m[j+1]=temp;
+                    m[j+1] = temp;
                 }
             }
+
         }
     }
 
     /**
      * 快速排序 冒泡排序的一种改进。
-         它的基本思想是：通过一趟排序将要排序的数据分割交换成独立的两部分，
+         它的基本思想是：通过一轮排序将要排序的数据分割交换成独立的两部分，
          其中一部分的所有数据都比另外一部分的所有数据都要小，
          然后再按此方法对这两部分数据分别进行快速排序，
          整个排序过程可以递归进行，以此达到整个数据变成有序序列。
@@ -75,23 +76,24 @@ public class ExerciseAll {
      */
     static void quicksort(int left,int right){
        int i,j,mark,temp;
-       if (left>=right) return;
-       mark = a[left];
+       if (left > right) return;
+       mark=a[left];
        i=left;j=right;
-        while (i != j) {
-            while (a[j] <= mark&&i<j) j--;
-            while (a[i] >= mark&&i<j) i++;
-            if (i<j) {
-                temp=a[i];
-                a[i]=a[j];
-                a[j]=temp;
-            }
-        }
-
+       while(i!=j){
+           while(i<j&&a[j]<=mark) j--;
+           while(i<j&&a[i]>=mark) i++;
+           if (i < j) {
+               temp = a[i];
+               a[i]=a[j];
+               a[j]=temp;
+           }
+       }
         a[left]=a[i];
         a[i]=mark;
-        quicksort(left,i-1);
+
+        quicksort(left,i-1);//继续处理左边的，这里是一个递归的过程
         quicksort(i+1,right);
+
     }
 
 
@@ -101,16 +103,16 @@ public class ExerciseAll {
      * @param m 需要排序的数据，按大到小排序
      */
     public static void XuanzePaixu(int[] m) {
-        int temp=0;
-        for (int i = 0; i <m.length ; i++) {
-            int mark = i;
-            for (int j = i; j <m.length ; j++) {
-                if (m[j]>m[mark]) mark=j;
+        int t=0;
+        int r=0;
+        for (int i = 0; i < m.length; i++) {
+            int mark = m[i];
+            for (int j =i; j < m.length; j++) {
+                if (m[j] > mark) r=j;
             }
-            if (mark > i){
-                temp=m[mark];
-                m[mark]=m[i];
-                m[i]=temp;
+            if (r>0){
+                 m[i] = m[r];
+                 m[r] = mark;
             }
         }
     }
