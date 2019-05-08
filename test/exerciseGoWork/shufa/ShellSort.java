@@ -13,7 +13,7 @@ import java.util.Arrays;
  * 我们上面选择的增量序列{n/2,(n/2)/2...1}(希尔增量)，其最坏时间复杂度依然为O(n2)，一些经过优化的增量序列如Hibbard经过复杂证明可使得最坏时间复杂度为O(n3/2)
  *
  * https://www.cnblogs.com/chengxiao/p/6103002.html 直接插入排序
- * 直接插入排序基本思想是每一步将一个待排序的记录，插入到前面已经排好序的有序序列中去，直到插完所有元素为止。
+ * 直接插入排序基本思想是从第二个元素开始将一个待排序的记录，插入到前面已经排好序的有序序列中去，直到插完所有元素为止。
  */
 public class ShellSort {
     public static void main(String[] args) {
@@ -34,7 +34,7 @@ public class ShellSort {
         for (int i = 1; i < arr.length; i++) {
             int temp = arr[i];
             while (i-1 >0 && arr[i] > arr[i-1]){
-                arr[i-1] = arr[i];
+                arr[i] = arr[i-1];
                 i--;
             }
             arr[i]=temp;

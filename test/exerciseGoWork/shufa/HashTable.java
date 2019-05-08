@@ -1,6 +1,7 @@
 package exerciseGoWork.shufa;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  * @Auther: niujianye
@@ -11,7 +12,7 @@ import java.util.Arrays;
  *
  * 哈希表查找（除留余数法（余数大于等于0小于除数））
  * 哈希表也称散列表，查找有两种方式，比较式查找和计算式查找，而计算式查找则通过哈希表来实现。
- * 给定表M，存在函数f(key)，对任意给定的关键字值key，代入函数后若能得到包含该关键字的记录在表中的地址，则称表M为哈希(Hash）表，函数f(key)为哈希(Hash) 函数；
+ * 给定表M，存在函数f(key)，对任意给定的关键字值key，代入函数后若能得到包含该关键字记录在表中的地址，则称表M为哈希(Hash）表，函数f(key)为哈希(Hash) 函数；
  * 更通俗来说，哈希表通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。
  * 这里用除留余数法来构造哈希表和开放地址法中的线性探测再散列来处理不同关键字通过哈希函数映射到同一地址的冲突。
     1、除留余数法：取关键字被某个不大于散列表表长m的数p除后所得的余数为散列地址。即 H(key) = key MOD p,p<=m。
@@ -23,6 +24,7 @@ public class HashTable {
         static int N=key.length;	//散列表长度
         static int ht[]=new int[N];
         public static void main(String[] args) {
+            System.out.println();
             System.out.print("原数组:	"+Arrays.toString(key));
 
             for (int i = 0; i < ht.length; i++) {
@@ -45,9 +47,22 @@ public class HashTable {
             for (int i = 0; i < key.length; i++) {
                 System.out.print(hashSearch1(ht,key[i])+"	");
             }
+
             System.out.println();
-            System.out.print(hashSearch1(ht,60)+"	");
             System.out.print("关键码:	"+Arrays.toString(ht));
+
+            System.out.println();
+            while (true) {
+                // 哈希表查找
+                System.out.print("请输入要查找的数据：");
+                int data = new Scanner(System.in).nextInt();
+                int result = hashSearch1(ht, data);
+                if (result == -1) {
+                    System.out.println("对不起，没有找到！");
+                } else {
+                    System.out.println("数据的位置是：" + result);
+                }
+            }
         }
 
         static int hashSearch1(int ht[],int k){
@@ -68,6 +83,7 @@ public class HashTable {
                 if(ht[i]==k){
                     return i;
                 }
+
                 i=(++i)%N;
             }
 
@@ -77,7 +93,7 @@ public class HashTable {
                 ht[i]=k;
                 return i;
             }
-            return 0;
+            return -1;
         }
 
 

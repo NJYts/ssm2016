@@ -9,11 +9,13 @@ import java.util.Arrays;
  * http://www.cnblogs.com/chengxiao/p/6129630.html
  * 总结堆排序的基本思路：
 
-　　a.将无需序列构建成一个堆，根据升序降序需求选择大顶堆或小顶堆;
+　　a.将无序序列按照完全二叉树的特点 从最后一个非叶子节点 开始，按照从下到上 从左到右 的子树的顺序，
+        根据升序降序需求构建成大顶堆或小顶堆;
 
-　　b.将堆顶元素与末尾元素交换，将最大元素"沉"到数组末端;
+　　b.将堆顶元素与末尾元素交换，将最大元素筛选到到数组末端;
 
-　　c.重新调整结构，使其满足堆定义，然后继续交换堆顶元素与当前末尾元素，反复执行选择调整+交换步骤，直到整个序列有序。
+　　c.重新调整筛选出来以外的数列结构，使其满足堆定义，然后继续交换堆顶元素与当前末尾元素，
+        反复执行选择调整+交换步骤，直到整个序列有序。
 
  */
 public class HeapSort {
@@ -41,23 +43,23 @@ public class HeapSort {
         }
 
         public static void heapEngine(int[] arr,int begin,int end){
-            //开始的值会变化 提前保存其他变量
-            int temp=arr[begin];
+            int temp = arr[begin];
+
             for (int i = 2*begin+1; i < end; i = 2*i+1) {
-                //一次循环就是一个三角组合的判断处理
-                //首先判断相邻两个叶子节点
-                if (i + 1 < end && arr[i] < arr[i+1]) i++;
-                //较大的叶子与节点相比较
+
+                if (i+1<end&&arr[i]<arr[i+1]) i++;
+
                 if (arr[i] > temp) {
-                    arr[begin] = arr[i];
-                    begin = i;
-                }else{
-                    //符合要求
+                     arr[begin] = arr[i];
+
+                     begin =i;
+
+                }else {
                     break;
                 }
             }
-            //将开始的值放到选择出的最大值处
-            arr[begin]=temp;
+
+            arr[begin] = temp;
         }
         /**
          *

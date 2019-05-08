@@ -1,6 +1,6 @@
 package exerciseGoWork.shufa;
 
-import com.github.abel533.echarts.feature.Mark;
+import java.util.ArrayList;
 
 /**
  * Created by njy on 2018/10/31.
@@ -10,6 +10,7 @@ import com.github.abel533.echarts.feature.Mark;
 public class ExerciseAll {
     private static int a[] = new int[] { 2, 5, 1, 4, 6, 8, 7, 9, 8 , 22 , 3 , 10},na;//定义全局变量，这两个变量需要在子函数中使用
     public static void main(String[] args) {
+        ArrayList<Object> objects = new ArrayList<>();
         int a1 =1; int b = 1;
         System.out.println(a1==b);
         // 冒泡排序 - begin...
@@ -48,50 +49,50 @@ public class ExerciseAll {
 
     /**
      * 冒泡排序：下标相邻的两个数进行比较交换
-     * @param m 需要排序的数据，按由小到大排序
+     * @param m 需要排序的数据，按由大到小排序
      */
     public static void MaoPaoPaixu(int[] m) {
         int temp = 0;
         for (int i = 0; i < m.length-1; i++) {
-            for (int j = 0; j < m.length-1-i ; j++) {
+            for (int j = 0; j < m.length-1-i; j++) {
                 if (m[j] > m[j+1]) {
-                    temp = m[j];
-                    m[j] = m[j+1];
-                    m[j+1] = temp;
+                    temp=m[j];
+                    m[j]=m[j+1];
+                    m[j+1]=temp;
                 }
             }
-
         }
     }
 
     /**
      * 快速排序 冒泡排序的一种改进。
-         它的基本思想是：通过一轮排序将要排序的数据分割交换成独立的两部分，
-         其中一部分的所有数据都比另外一部分的所有数据都要小，
+         它的基本思想是：通过一轮排序以第一个数为基准值，将要排序的数据分割交换成独立的两部分，
+         其中一部分的所有数据都比另外一部分的所有数据都要小，将基准值与两部分中间相遇位置的值互换，确定基准值的顺序位置。
          然后再按此方法对这两部分数据分别进行快速排序，
-         整个排序过程可以递归进行，以此达到整个数据变成有序序列。
+         整个排序过程递归进行，以此达到整个数据变成有序序列。
          从大到小
      * @param left
      * @param right
      */
     static void quicksort(int left,int right){
        int i,j,mark,temp;
-       if (left > right) return;
-       mark=a[left];
+       if (left >= right) return;
        i=left;j=right;
-       while(i!=j){
-           while(i<j&&a[j]<=mark) j--;
-           while(i<j&&a[i]>=mark) i++;
-           if (i < j) {
+       mark=a[left];
+       while (i != j){
+           while (i<j && a[j] >= mark) j--;
+           while (i<j && a[i] <= mark) i++;
+           if (i != j) {
                temp = a[i];
-               a[i]=a[j];
-               a[j]=temp;
+               a[i] = a[j];
+               a[j] = temp;
            }
        }
-        a[left]=a[i];
-        a[i]=mark;
 
-        quicksort(left,i-1);//继续处理左边的，这里是一个递归的过程
+       a[left] = a[j];
+       a[j] = mark;
+
+        quicksort(left,i-1);
         quicksort(i+1,right);
 
     }
@@ -103,16 +104,17 @@ public class ExerciseAll {
      * @param m 需要排序的数据，按大到小排序
      */
     public static void XuanzePaixu(int[] m) {
-        int t=0;
-        int r=0;
+        int mark;
+        int temp;
         for (int i = 0; i < m.length; i++) {
-            int mark = m[i];
-            for (int j =i; j < m.length; j++) {
-                if (m[j] > mark) r=j;
+            mark = i;
+            for (int j = i; j < m.length; j++) {
+                if (m[j] > m[mark]) mark=j;
             }
-            if (r>0){
-                 m[i] = m[r];
-                 m[r] = mark;
+            if (mark > i) {
+                temp = m[i];
+                m[i] = m[mark];
+                m[mark] = temp;
             }
         }
     }
