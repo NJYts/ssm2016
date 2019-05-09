@@ -9,12 +9,9 @@ import java.util.ArrayList;
  */
 public class ExerciseAll {
     private static int a[] = new int[] { 2, 5, 1, 4, 6, 8, 7, 9, 8 , 22 , 3 , 10},na;//定义全局变量，这两个变量需要在子函数中使用
+    private static int[] m = new int[] { 2, 5, 1, 4, 6, 8, 7, 9, 8 , 22 , 3 , 10};
     public static void main(String[] args) {
-        ArrayList<Object> objects = new ArrayList<>();
-        int a1 =1; int b = 1;
-        System.out.println(a1==b);
         // 冒泡排序 - begin...
-        int[] m = new int[] { 2, 5, 1, 4, 6, 8, 7, 9, 8 , 22 , 3 , 10};
         MaoPaoPaixu(m);
         System.out.println("冒泡排序 - result...");
         for (int i:m){
@@ -48,7 +45,7 @@ public class ExerciseAll {
 
 
     /**
-     * 冒泡排序：下标相邻的两个数进行比较交换
+     * 冒泡排序：每次循环下标相邻的两个数进行比较交换，最后将最大值或者最小值换到结尾
      * @param m 需要排序的数据，按由大到小排序
      */
     public static void MaoPaoPaixu(int[] m) {
@@ -66,9 +63,10 @@ public class ExerciseAll {
 
     /**
      * 快速排序 冒泡排序的一种改进。
-         它的基本思想是：通过一轮排序以第一个数为基准值，将要排序的数据分割交换成独立的两部分，
-         其中一部分的所有数据都比另外一部分的所有数据都要小，将基准值与两部分中间相遇位置的值互换，确定基准值的顺序位置。
-         然后再按此方法对这两部分数据分别进行快速排序，
+         它的基本思想是：
+         通过一轮排序以第一个数为基准值，将要排序的数据分割交换成独立的两部分，
+         其中一部分的所有数据都比另外一部分的所有数据都要大，再将基准值与两部分相遇位置的值互换，这样就确定了基准值的顺序位置。
+         然后再按此方法对这两部分数据分别进行排序，
          整个排序过程递归进行，以此达到整个数据变成有序序列。
          从大到小
      * @param left

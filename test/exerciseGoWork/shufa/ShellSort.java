@@ -31,13 +31,15 @@ public class ShellSort {
      * @param arr
      */
     public static void insertionSort2(int[] arr) {
+        int j;
         for (int i = 1; i < arr.length; i++) {
+            j = i;
             int temp = arr[i];
-            while (i-1 >0 && arr[i] > arr[i-1]){
-                arr[i] = arr[i-1];
-                i--;
+            while (j-1 >0 && arr[j] > arr[j-1]){
+                arr[j] = arr[j-1];
+                j--;
             }
-            arr[i]=temp;
+            arr[j]=temp;
         }
     }
 
@@ -110,13 +112,15 @@ public class ShellSort {
      * @param arr
      */
     public static void insertionSort(int[] arr) {
-        for (int i = 1; i <arr.length ; i++) {
+        int j;
+        for (int i = 1; i < arr.length; i++) {
+            j = i;
             int temp = arr[i];
-            while (i>0 && temp >arr[i-1]) {
-                arr[i]=arr[i-1];
-                i--;
+            while (j-1 >0 && arr[j] > arr[j-1]){
+                arr[j] = arr[j-1];
+                j--;
             }
-            arr[i]=temp;
+            arr[j]=temp;
         }
     }
 

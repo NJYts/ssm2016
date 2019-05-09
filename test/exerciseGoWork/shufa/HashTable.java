@@ -78,8 +78,13 @@ public class HashTable {
             }
             //该位置被占用 再+1取余数 循环遍历散列表
             int i=(j+1)%N;
-            while (ht[i]!=-1&&i!=j) {
-                //当再次之后位置不为空且与原位置不重复时
+            while (i!=j) {//与原位置不重复时
+                //找到空的位置
+                if(ht[i]==-1){
+                    ht[i]=k;
+                    return i;
+                }
+                //目标值匹配
                 if(ht[i]==k){
                     return i;
                 }
@@ -89,9 +94,6 @@ public class HashTable {
 
             if (i==j) {//遍历散列表一遍，没找到空的位置 ，满
                 System.err.println("哈希表溢出！");
-            }else {//找到空的位置
-                ht[i]=k;
-                return i;
             }
             return -1;
         }
@@ -102,30 +104,6 @@ public class HashTable {
             return v%N;
         }
 
-        static int hashSearch(int ht[],int len,int k){
-            int j=h(k);
-            if (ht[j]==k) {//查找成功
-                return j;
-            }else if(ht[j]==-1){//该位置为空，插入，返回
-                ht[j]=k;
-                return j;
-            }
-            int i=(j+1)%N;
-            while (ht[i]!=-1&&i!=j) {//循环遍历散列表
-                if(ht[i]==k){
-                    return i;
-                }else {
-                    i=(++i)%N;
-                }
-            }
-            if (i==j) {//遍历散列表一遍，没找到，满
-                System.err.println("哈希表溢出！");
-            }else {
-                ht[i]=k;
-                return i;
-            }
-            return 0;
-        }
 
 
 }
