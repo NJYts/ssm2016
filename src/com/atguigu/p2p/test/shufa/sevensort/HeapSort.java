@@ -1,4 +1,4 @@
-package com.atguigu.p2p.test.shufa;
+package com.atguigu.p2p.test.shufa.sevensort;
 
 import java.util.Arrays;
 
@@ -9,13 +9,11 @@ import java.util.Arrays;
  * http://www.cnblogs.com/chengxiao/p/6129630.html
  * 总结堆排序的基本思路：
 
-　　a.将无序序列按照完全二叉树的特点 从最后一个非叶子节点 开始，按照从下到上 从左到右 的子树的顺序，
-        根据需求构建成大顶堆或小顶堆;
-
-　　b.将堆顶元素与堆末尾元素交换，将最大元素筛选到到数组末端;
-
-　　c.将筛选出来以外的数列重新调整结构，使其满足堆定义，然后继续交换堆顶元素与当前堆末尾元素，
-        反复执行选择调整+交换步骤，直到整个序列有序。
+　　a.首先根据需求将无序序列按照完全二叉树的特点 从最后一个非叶子节点 开始，按照从下到上 从右到左 的子树的顺序，
+        构建成大顶堆或小顶堆;
+　　b.然后将堆顶元素与堆末尾元素交换，将最大或者最小值筛选到到数组末端;
+　　c.再重新调整最大或者最小值以外的数列结构，使其满足堆定义，然后继续交换堆顶元素与当前堆末尾元素，
+        反复执行调整+交换步骤，一直循环到构建堆的元素只有一个，即整个序列有序。
 
  */
 public class HeapSort {
@@ -28,7 +26,7 @@ public class HeapSort {
 
         public static void sort1(int[] array){
             //按照完全二叉树的特点 从最后一个非叶子节点 开始
-            //按照从下到上 从左到右 的子树的顺序调整 完成大顶锥
+            //按照从下到上 从右到左 的子树的顺序调整 完成大顶锥
             for (int i = array.length/2-1; i >=0 ; i--) {
                 heapEngine(array,i,array.length);
             }

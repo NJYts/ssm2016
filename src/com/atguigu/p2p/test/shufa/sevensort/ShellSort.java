@@ -1,4 +1,4 @@
-package com.atguigu.p2p.test.shufa;
+package com.atguigu.p2p.test.shufa.sevensort;
 
 import java.util.Arrays;
 
@@ -7,13 +7,13 @@ import java.util.Arrays;
  * @Date: 2018/11/27 14:49
  * @Description:  http://www.cnblogs.com/chengxiao/p/6104371.html
  *
- * 希尔排序是把数据按下标的一定增量分组，对每组使用直接插入排序算法排序；随着增量逐渐减少，每组包含的关键词越来越多，当增量减至1时，整个文件恰被分成一组，算法便终止。
+ * 希尔排序是把数据按下标的一定增量分组，对每组使用直接插入排序算法排序；随着增量逐渐减少，每组包含的元素越来越多，当增量减至1时，整个文件恰被分成一组，算法便终止。
  *
  * 希尔排序是插入排序的一种，使用中对于增量序列的选择十分重要，直接影响到希尔排序的性能。
  * 我们上面选择的增量序列{n/2,(n/2)/2...1}(希尔增量)，其最坏时间复杂度依然为O(n2)，一些经过优化的增量序列如Hibbard经过复杂证明可使得最坏时间复杂度为O(n3/2)
  *
  * https://www.cnblogs.com/chengxiao/p/6103002.html 直接插入排序
- * 直接插入排序基本思想是从第二个元素开始将一个待排序的记录，插入到前面已经排好序的有序序列中去，直到插完所有元素为止。
+ * 直接插入排序基本思想是从第二个元素开始将一个待排序的元素，插入到前面已经排好序的有序序列中去，直到插完所有元素为止。
  */
 public class ShellSort {
     public static void main(String[] args) {

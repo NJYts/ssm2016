@@ -1,4 +1,4 @@
-package com.atguigu.p2p.test.shufa;
+package com.atguigu.p2p.test.shufa.sevensort;
 
 import java.util.Arrays;
 
@@ -11,6 +11,9 @@ import java.util.Arrays;
  * @Description:
  * 归并排序（MERGE-SORT）是利用归并的思想实现的排序方法，该算法采用经典的分治（divide-and-conquer）策略
  * （分治法将问题分(divide)成一些小的问题然后递归求解，而治(conquer)的阶段则将分的阶段得到的各答案"修补"在一起，即分而治之)。
+ *
+ *  根据完全二叉树特性，将序列从中间分成两个小的序列，再分别对两个小序列从放中间拆分，一直到每个序列里面只有一个元素。
+ *  然乎按照拆分的相反的顺序，从只有一个元素的序列开始，将两个小的序列，合成一个有序的序列，直到所有序列合在一起。可以使用递归拆分与合并。
  *
  * 归并排序是稳定排序，它也是一种十分高效的排序，能利用完全二叉树特性的排序一般性能都不会太差。
  * java中Arrays.sort()采用了一种名为TimSort的排序算法，就是归并排序的优化版本。

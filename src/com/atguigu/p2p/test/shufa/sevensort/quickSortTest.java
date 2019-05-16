@@ -1,4 +1,4 @@
-package com.atguigu.p2p.test.shufa;
+package com.atguigu.p2p.test.shufa.sevensort;
 
 import org.junit.Test;
 
