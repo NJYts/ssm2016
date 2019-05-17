@@ -44,7 +44,9 @@ public class BSTreeOperate {
         BSTreeNode current = root;
         while (true) {
             if (bsTreeNode.data <= current.data) {
-                // 如果插入节点的值小于当前节点的值，说明应该插入到当前节点左子树，而此时如果左子树为空，就直接设置当前节点的左子树为插入节点。
+                // 如果插入节点的值小于当前节点的值，说明应该插入到当前节点左子树，
+                // 而此时如果左子树为空，就直接设置当前节点左子树为插入节点。
+                // 不为空则设置当前节点左子树为当前节点，继续下次循环。
                 if (current.left == null) {
                     current.left = bsTreeNode;
                     size++;
@@ -52,7 +54,9 @@ public class BSTreeOperate {
                 }
                 current = current.left;
             } else {
-                // 如果插入节点的值大于当前节点的值，说明应该插入到当前节点右子树，而此时如果右子树为空，就直接设置当前节点的右子树为插入节点。
+                // 如果插入节点的值大于当前节点的值，说明应该插入到当前节点右子树，
+                // 而此时如果右子树为空，就直接设置当前节点的右子树为插入节点。
+                // 不为空则设置当前节点右子树为当前节点，继续下次循环。
                 if (current.right == null) {
                     current.right = bsTreeNode;
                     size++;
