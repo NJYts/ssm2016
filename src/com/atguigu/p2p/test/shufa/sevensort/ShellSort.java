@@ -32,9 +32,10 @@ public class ShellSort {
      */
     public static void insertionSort2(int[] arr) {
         int j;
+        int temp;
         for (int i = 1; i < arr.length; i++) {
             j = i;
-            int temp = arr[i];
+            temp = arr[i];
             while (j-1 >0 && arr[j] > arr[j-1]){
                 arr[j] = arr[j-1];
                 j--;
